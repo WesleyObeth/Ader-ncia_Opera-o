@@ -7,16 +7,12 @@ Criado na quinta 04/03/2021
 """
 # Pacote para mexer com os arquivos de Excel.
 import pandas as pd
-
 # Modulo para cronômetrar o programa.
 import time
-
 # Pacote para definir o caminho dos arquivos.
 import os
-
 # Começo do programa.
 inicio = time.time()
-
 # É definido o caminho da pasta de trabalho.
 os.chdir("/Users/wesleyhernandez/Desktop/Especiais")
     
@@ -100,7 +96,7 @@ baixas = pd.concat(lista, ignore_index= True)
 baixas.to_excel("Baixas_Especiais." + dia_plano_sql + ".xlsx", encoding = 'utf8', index = False)
 
 #=============================================================================#
-#                 IMPORTAMOS O ARQUIVO ESTOQUE DA BASE ACCESS
+#                  IMPORTACAO DA BASE DO ESTOQUE DO ACCESS
 #=============================================================================#
 
 # Modulo para fazer conexões com bases de dados relacionais.
@@ -182,7 +178,7 @@ plano_solic["Aderencia"] = plano_solic["Baixado"].apply(lambda x: "Baixado" if x
 # Eliminando colunas com o comando "DROP". axis = 0 é para linhas e axis = 1 para colunas.
 # plano_solic.drop('Baixado', axis = 1, inplace = True)
 
-# #==========================================================No docu===================#
+# #=============================================================================#
 # #                FILTRANDO UNICAMENTE CADA CARTEIRA
 # #=============================================================================#
 
@@ -231,8 +227,6 @@ ader_ano= ader_ano_1.groupby(['Carteira', 'Fase', 'Ano'], as_index = False).agg(
 
 # É Acrescentado a coluna ADERENCIA = (Baixado no plano/Alocado)
 ader_ano["Aderencia"] = ((ader_ano["Baixado_no_plano"]/ader_ano["Alocado"])*100).astype(str) + "%"
-# x = 0.25
-# x_teste = '{:.2%}'.format(x)
  
 # #=============================================================================#
 # #                            ADERENCIA AO PLANO MES
